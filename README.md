@@ -4,60 +4,66 @@
 
 ## Tasks
 
-- [ ] 1. Ознакомиться со ссылками учебного материала
-- [ ] 2. Выполнить инструкцию учебного материала
-- [ ] 3. Составить отчет и отправить ссылку личным сообщением в **Slack**
+- [x] 1. Ознакомиться со ссылками учебного материала
+- [x] 2. Выполнить инструкцию учебного материала
+- [x] 3. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
 ## Tutorial
 
 ```bash
-$ export GITHUB_USERNAME=<имя_пользователя>
-$ export GIST_TOKEN=<сохраненный_токен>
-$ alias edit=<nano|vi|vim|subl>
+$ export GITHUB_USERNAME=CERZAR                                 # Создать переменную окружения GITHUB_USERNAME
+$ export GIST_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    # Создать переменную окружения GIST_TOKEN
+$ alias edit=nano                                               # Синоним команды edit (Будет вызван nano)
 ```
 
 ```ShellSession
-$ mkdir -p ${GITHUB_USERNAME}/workspace
-$ cd ${GITHUB_USERNAME}/workspace
-$ pwd
-$ cd ..
-$ pwd
+$ mkdir -p ${GITHUB_USERNAME}/workspace                         # Создать папку workspace
+$ cd ${GITHUB_USERNAME}/workspace                               # Перейти в папку workspace
+$ pwd                                                           # Вывести текущую директорию
+# /home/cezar/CERZAR/workspace
+$ cd ..                                                         # Перейти на раздел выше
+$ pwd                                                           # Вывести текущую директорию
+# /home/cezar/CERZAR
 ```
 
 ```ShellSession
-$ mkdir -p workspace/tasks/
-$ mkdir -p workspace/projects/
-$ mkdir -p workspace/reports/
-$ cd workspace
+$ mkdir -p workspace/tasks/                                     # Создать папку tasks
+$ mkdir -p workspace/projects/                                  # Создать папку projects
+$ mkdir -p workspace/reports/                                   # Создать папку reports
+$ cd workspace                                                  # Перейти в папку workspace
 ```
 
 ```ShellSession
 # Debian
-$ wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
-$ tar -xf node-v6.11.5-linux-x64.tar.xz
-$ rm -rf node-v6.11.5-linux-x64.tar.xz
-$ mv node-v6.11.5-linux-x64 node
+$ wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz    # Скачать указанный файл
+$ tar -xf node-v6.11.5-linux-x64.tar.xz                                 # Разархивировать архив
+$ rm -rf node-v6.11.5-linux-x64.tar.xz                                  # Удалить архив
+$ mv node-v6.11.5-linux-x64 node                                        # Переименовать разархивированную папку на node
 ```
 
 ```ShellSession
-$ ls node/bin
-$ echo ${PATH}
-$ export PATH=${PATH}:`pwd`/node/bin
-$ echo ${PATH}
-$ mkdir scripts
-$ cat > scripts/activate<<EOF
+$ ls node/bin                                                           # Вывести содержимое папки
+# node  npm
+$ echo ${PATH}                                                          # Вывести переменную окружения PATH
+# /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+$ export PATH=${PATH}:`pwd`/node/bin                                    # Дописать в PATH папку с node js
+$ echo ${PATH}                                                          # Вывести переменную окружения PATH
+# /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/cezar/CERZAR/workspace/node/bin
+$ mkdir scripts                                                         # Создать папку scripts
+$ cat > scripts/activate<<EOF                                           # Записасть в файл scripts/activate
 export PATH=\${PATH}:`pwd`/node/bin
 EOF
-$ source scripts/activate
+$ source scripts/activate                                               # Выполнить указанный скрипт
 ```
 
 ```ShellSession
-$ npm install -g gistup
-$ ls node/bin
+$ npm install -g gistup                                                 # Установить пакет gistup в node js
+$ ls node/bin                                                           # Вывести содержимое папки
+# gistup  gistup-open  gistup-rename  node  npm
 ```
 
 ```ShellSession
-$ cat > ~/.gistup.json <<EOF
+$ cat > ~/.gistup.json <<EOF                                            # Вывести указанный текст в файл ~/.gistup.json
 {
   "token": "${GIST_TOKEN}"
 }
